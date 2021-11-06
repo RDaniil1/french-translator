@@ -21,10 +21,11 @@ class MainWindow(QDialog):
         if args.__len__() != 0: position = args[0] 
 
         if number in [num for num in range(100, 1000)]: return 'сотни'
+        elif number == 10: return 'десяти'
         elif number in [num for num in range(20, 70)] + [num for num in range(80, 90)] : return 'десяток'
         elif number in [num for num in range(70, 80)] + [num for num in range(90, 100)] and position == 'First': return 'единиц'
         elif number in [num for num in range(70, 80)] + [num for num in range(90, 100)] and position == 'Second': return 'десяток'
-        elif number in [num for num in range(10, 20)]: return 'чисел от одинадцати до девятнадцати'
+        elif number in [num for num in range(11, 20)]: return 'чисел от одинадцати до девятнадцати'
         elif number in [num for num in range(1, 10)] + [num for num in range(70, 80)] + [num for num in range(90, 100)]: return 'единиц'
 
     def __CheckNumberStatus(self, firstNum: int, secondNum: int) -> str:
@@ -56,7 +57,7 @@ class MainWindow(QDialog):
 
         # Concatenate 'et' and units with next word if exist
         for i in range(len(frenchWords) - 1):
-            if frenchWords[i] == 'et' and (frenchWords[i + 1] == 'un' or frenchWords[i + 1] == 'onze'):
+            if frenchWords[i] == 'et':
                 frenchWords[i] += ' ' + frenchWords[i + 1]
                 del frenchWords[i + 1] 
 
