@@ -56,7 +56,7 @@ class MainWindow(QDialog):
 
         # Concatenate 'et' and units with next word if exist
         for i in range(len(frenchWords) - 1):
-            if frenchWords[i] == 'et':
+            if frenchWords[i] == 'et' and (frenchWords[i + 1] == 'un' or frenchWords[i + 1] == 'onze'):
                 frenchWords[i] += ' ' + frenchWords[i + 1]
                 del frenchWords[i + 1] 
 
@@ -86,7 +86,7 @@ class MainWindow(QDialog):
         # Convert values from french to numbers 
         numsFromFrench.clear()
         for frenchWord in frenchWords:
-            numsFromFrench += [text2num(frenchWord, lang='fr')]
+            numsFromFrench += [text2num(frenchWord, lang='fr', relaxed=True)]
 
         units = [num for num in range(2, 10)]
 
@@ -148,7 +148,7 @@ class MainWindow(QDialog):
 
         if logOutput == 'OK':
             frenchNumber = ' '.join([str(num2words(num, lang='fr')) for num in self.__ANALYZED_NUMBERS])
-            resultNum = text2num(frenchNumber, "fr")
+            resultNum = text2num(frenchNumber, "fr", relaxed=True)
             self.resultArabic.setText(str(resultNum)) 
             self.resultRoman.setText(roman.toRoman(resultNum))
         else: 
