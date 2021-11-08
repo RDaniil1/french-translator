@@ -20,9 +20,8 @@ class MainWindow(QDialog):
         position = ''
         if args.__len__() != 0: position = args[0] 
 
-        if number in [num for num in range(100, 1000)]: return 'сотни'
-        elif number == 10: return 'десяти'
-        elif number in [num for num in range(20, 70)] + [num for num in range(80, 90)] : return 'десяток'
+        if number in [num for num in range(100, 1000)]: return 'сотен'
+        elif number in [num for num in range(20, 70)] + [num for num in range(80, 90)] + [10]: return 'десяток'
         elif number in [num for num in range(70, 80)] + [num for num in range(90, 100)] and position == 'First': return 'единиц'
         elif number in [num for num in range(70, 80)] + [num for num in range(90, 100)] and position == 'Second': return 'десяток'
         elif number in [num for num in range(11, 20)]: return 'чисел от одинадцати до девятнадцати'
@@ -38,11 +37,11 @@ class MainWindow(QDialog):
         # Custom lists to add errors for 70 and 90 numbers 
         seventy = [num for num in range(70, 80)]
         ninty = [num for num in range(90, 100)]
-
+            
         if (firstNum in hundreds) and (secondNum in hundreds): return 'После сотен не может быть сотен'
         elif (firstNum == 10) and (secondNum in range(1, 7)): return 'После десяти не может быть чисел от одного до семи'
         elif (firstNum in dozens) and (firstNum not in seventy and firstNum not in ninty) and (secondNum not in units): return f'После десяток не может быть {self.__GetNumType(secondNum)}'
-        elif (firstNum in tenToNineteen or firstNum in units or firstNum in seventy or firstNum in ninty): return f"После {self.__GetNumType(firstNum, 'First')} не может быть {self.__GetNumType(secondNum, 'Second')}"
+        elif firstNum in tenToNineteen or firstNum in units or firstNum in seventy or firstNum in ninty: return f"После {self.__GetNumType(firstNum, 'First')} не может быть {self.__GetNumType(secondNum, 'Second')}"
           
         return 'OK'
 
