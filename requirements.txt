@@ -1,0 +1,5 @@
+num2words==0.5.14
+PyQt5==5.15.11
+PyQt5_sip==12.17.0
+roman==5.0
+text2num==2.5.1
